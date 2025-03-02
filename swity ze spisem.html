@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktywny Wiersz</title>
+    <style>
+        body {
+            font-family: 
+            margin: 20px;
+            padding: 20px;
+             background: url('dom2.jpg') no-repeat center center fixed; 
+    background-size: cover; /* Dopasowuje obraz do ekranu */
+        }
+        .poem {
+		
+           max-width: 600px;
+    margin: left;
+    background: rgba(255, 255, 255, 0.7); /* Biały kolor z 50% przezroczystości */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+	
+        }
+		.poem {
+    font-family: Arial, serif; 
+}
+.section {
+    display: none; /* Domyślnie ukrywamy wszystkie sekcje */
+}
+
+#poem {
+    display: block; /* Tylko sekcja wiersza widoczna na starcie */
+}
+		.analysis-box {
+    max-width: 800px; /* Szeroka ramka */
+    margin: auto;
+    background: rgba(255, 255, 255, 0.7); /* Półprzezroczyste tło */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+	.context-box {
+    max-width: 800px; /* Szeroka ramka */
+    margin: auto;
+    background: rgba(255, 255, 255, 0.7); /* Półprzezroczyste tło */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.history-box {
+    max-width: 800px; /* Szeroka ramka */
+    margin: auto;
+    background: rgba(255, 255, 255, 0.7); /* Półprzezroczyste tło */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+		.audio-box {
+    max-width: 800px; /* Szeroka ramka */
+    margin: auto;
+    background: rgba(255, 255, 255, 0.7); /* Półprzezroczyste tło */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.audio-section h3 {
+    color: white; /* Tymczasowo czerwony, żeby zobaczyć, czy się pojawia */
+    font-size: 24px;
+}
+
+.audio-description {
+    color: white; /* Opis na niebiesko, żeby sprawdzić widoczność */
+    font-size: 20px;
+    margin-top: 10px;
+}
+        .line {
+            display: block;
+            margin: 10px 0;
+        }
+        .interactive {
+            color: navy;
+            cursor: pointer;
+            text-decoration: bold;
+            position: relative;
+        }
+        .tooltip {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 100;
+    max-width: 500px; /* Szerokość dymka */
+    text-align: left;
+    line-height: 1.8; /* Światło między wersami w dymku */
+}
+.tooltip {
+    font-family: Georgia, sans-serif; /* Bardzo czytelna czcionka dla dymków */ 
+}
+        .tooltip ul {
+    padding-left: 20px; /* Dodaj wcięcie dla listy */
+    margin-top: 10px; /* Odstęp nad listą */
+    margin-bottom: 10px; /* Odstęp pod listą */
+}
+
+.tooltip li {
+    margin-bottom: 12px !important; /* Wymuszony odstęp między punktami */
+    display: block; /* Zapewnia odstępy */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="poem">
+        <h2>Czesław Miłosz</h2>
+	<p class="line"></p>
+ 	<h2><span class="interactive" onclick="showTooltip(event, 'spostrzeżenia0')">ŚWITY</span></h2>
+	<p class="line"></p>
+	<p class="line"></p>
+        <p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• opadająca kadencja (oznajmująca rzeczywistość, nie wznosząca się, jak w pytaniu, i nie neutralna, jak np. w encyklopedii), dobitny rytm (ta DAM da ta DAM nietypowy dla polskiego akcentowania na przedostatnią sylabę) wraz z przestawnym szykiem (przydawka - orzeczenie - podmiot zamiast tradycyjnego <em>Dom był wysoki</em>, albo np.: <em>Tu stał wysoki dom</em>) powodują szczególne wrażenie. Te zabiegi manipulacji rytmem i szykiem, są nieprzypadkowe. </li><li>• Odchylamy głowy do góry, by spojrzeć na monumentalny, nieprzystępny budynek. Tak jakby pierwsze trzy słowa oznajmiały uroczyście jakąś górującą nad nami, surową, nieoswojoną, nieprzystępną obecność. Co też wprowadza od pierwszych słów dysonans między przyzwyczajeniem, że dom będzie schronieniem, azylem, bezpieczną przystanią, a faktyczną nieprzychylną niemal jakością domu. Zamiast poczucia bezpieczeństwa, dom budzi poczucie wyobcowania: <span class=\'interactive\' onclick=\'showTooltip(event, &quot;</li><li>• Barańczak w znakomitym eseju pt. <em>Tunel i lustro</em> wskazuje też na świadome kształtowanie przestrzeni w wierszu – pierwsza część Świtów to przestrzeń wertykalna, związana z ruchem ku górze, unoszeniem się, dominacją wysokości. Wysokość domu koresponduje z ruchem słońca, wzrastaniem, ale jednocześnie buduje dystans. </li><li>• Jednocześnie krótka, trójczłonowa konstrukcja wprowadza silną granicę obrazową, rytmiczną i poznawczą, nie prowadzi płynnie do następnej frazy, ale raczej tworzy wysoki próg&quot;)\'>rozwiń</span>')">Wysoki był dom</span>.
+ <span class="interactive" onclick="showTooltip(event, 'Choć tytuł wiersza kojarzy się ze światłem, światła w wierszu będzie niewiele w potrójnym sensie, raz, że czas wiersza rozpoczyna się w godzinach przedświtowych, w ciemności, dwa że kiedy dzień wstanie, nie będzie świetlisty, trzy wreszcie, że brak światła koresponduje z dużą oszczędnością pod względem obrazowania, kolorów, kształtów. Wzrok jest zmysłem w &quot;Świtach&quot; drugorzędnym')">W ciemności</span> <span class="interactive" onclick="showTooltip(event, 'Pełznący mur, to ruch, jak się zdaje, horyzontalny, co zaraz się zmieni, kiedy powrócimy do obrazu domu. Miłosz oszczędnie, ale skutecznie gra na animizacjach, kiedy opisuje dom, ale zaczynają się animizacje już tutaj. Możemy zapytać czemu nie np.: <em>wznosi się wielki mur</em>, lub zgodne z rytmem: <em>rósł wielki mur</em> skoro dom jest wysoki, i za chwilę będzie wschodził, czemu Miłosz nie podtrzyma tego ruchu ku górze i w przypadku muru? Wydaje się, że z co najmniej trzech powodów. 1. Kompozycja graficzna potrzebuje kontrapunktu poziomego, żeby dom nie uleciał w przestworza, żeby był mocno wbity w ziemię, ale nie tyle zakorzeniony, ile raczej ciężki. 2. Mur pełznący, to właśnie mur ciężki, nie biegnie, nie skacze, lecz pełznie. 3. Czasownik ten ma również dla ludzkiego ucha nie najmilsze brzmienie, kojarzy się z pełzającymi gadami, znowuż więc wnosi obcość')">pełzł</span> wielki mur</p>
+
+        <p class="line"><span class="interactive" onclick="showTooltip(event, 'Szelest liści to pierwsze z całego cyklu onomatopeicznych wyrażeń i zarazem zapowiedź dominującego dźwięku. Polski język, jak wiadomo, jest dość szeleszczący, ale ilość szelestów, syków i świstów w tym wierszu przebija niemal chrząszcza w trzcinie. Z jakiegoś powodu ta rodzina dźwięków dominuje w &quot;Świtach&quot;, nie tylko tam, gdzie są słowa dźwiękonaśladowcze.')">nad szelest liści</span> u klonów, nad zamęt <span class="interactive" onclick="showTooltip(event, '<ul><li>• Dziwna to perspektywa, gdyby brać pod uwagę wzrok, ktoś musiałby mieszkać w piwnicy z lufcikiem, przez który widzi tylko ludzkie nogi, spieszące się do pracy. Ale też rozpoczynanie wiersza od piwnicy, dążąc dalej wzwyż do izby na piętrze i ptaków na szarym niebie ma swoje uzasadnienie. Byłby to ruch od tego, co nieświadome, bądź pierwotne, ku świadomości, ruch sublimacyjny. Od człowieka zanurzonego we śnie, po badacza praw. </li><li>• Bachelard analizując znaczenie obrazu domu w literaturze, sugeruje, że nie jest to sztuczna symbolika do rozwikłania, lecz obraz i wędrówka głęboko uwewnętrzniona i odgrywana w każdym onirycznym domu, czy to jest zwiedzanie strychu, czy piwnic, czy ruch ku górze, ku dołowi, czy ruch poziomy po labiryncie korytarzy, plan domu onirycznego nakłada się na mapę psyche, która niejako naturalnie gra obrazami ciemnych piwnic i jasnych wysokich pięter. </li><li>• Można jednak uznać, że zamęt pośpiesznych nóg nie tyle odnosi się do obrazu, ile do dźwięku. Latami byłam przekonana, że w wierszu ludzie szurają nogami brodząc w liściach, aż zrozumiałam, że to na pewno nie jesień, a wrażenie wzięło się stąd, że wiersz zdominowany jest przez zmysł słuchu i szeleszczące odgłosy. </li><li>• ostatnia, acz nie mniej ważna kwestia, to rzadsze znacznie w polskiej poezji rymy męskie, jednosylabowe: mur - nóg. Tu procentowo jest ich wyjątkowo dużo, podobnie jak równoważników zdań, co dynamizuje napięcia w wierszu, analizy rytmów, rymów drobiazgowej dokonał Barańczak, nazywając siebie badaczem owadzich nogów, za co go kochamy ')">pośpiesznych nóg</span>.</p>
+
+        <p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• Barańczak we wspomnianym już eseju zwraca uwagę na podwojenie frazy <em>Wysoki był dom</em>, podkreślające jej wagę. Wskazuje, że wysokość domu jest istotnym elementem wiersza – nie tylko w sensie dosłownym, ale również symbolicznym, emocjonalnym i akustycznym. <em>Dom wznosi się nad placem, wprowadza poczucie izolacji, ale jednocześnie jest miejscem pełnym napięć – zarówno przestrzennych, jak i dźwiękowych</em>. Pisze dalej: <em>To nie tylko budynek – to punkt orientacyjny, miejsce napięć między wnętrzem a zewnętrzem, pomiędzy tym, co zamknięte i tym, co otwarte, między obserwacją a uczestnictwem</em>. </li><li>• Wg niego dom, o którym mówi Miłosz, to nie jedynie miejsce, lecz dynamiczny punkt odniesienia, z którego można patrzeć zarówno w dół, na świat ludzi, jak i w górę, na niebo i ptaki. Jest to dom, który włącza człowieka w cykl dnia i nocy, snu i czuwania, światła i ciemności. </li><li>• Powtórzona fraza sprawia też wrażenie rozpoczęcia jeszcze raz od początku, za pierwszym razem dom/świat pogrążony jest w ciemności, w której pełznie mur, od tego wersu zaś bardzo powoli zaczyna wstawać świt')">Wysoki był dom</span>, światłami nad placem <span class="interactive" onclick="showTooltip(event, '<ul><li>• Autor &quot;Tunelu i lustra&quot; pisze: [przestrzeń została] zdominowana najpierw przez – nawiązujący do toru wschodzącego słońca – wertykalny kierunek ruchu elementów rzeczywistości (pełzł wielki mur / nad szelest liści, dom […] światłami nad placem wschodził, winda parła przez piętra), następnie zaś (dokładnie od początku części drugiej, tj. od słów: Już zgrzyta tor) przez ruch horyzontalny. </li><li>• Zauważ, że Barańczak traktuje pełznięcie muru, inaczej niż ja, jako ruch również wertykalny. A jak jest naprawdę nie da się stwierdzić. Sam poeta, używający często słów intuicyjnie, jak kompozytor używa dźwięków, odpowiadał nieraz: nie wiem i odsyłał badaczy z pytaniami z powrotem do wiersza, żeby sobie sami rozstrzygali. </li><li>• Dom wschodzący światłami nad placem, to poza wizją miast i wsi, najszerszy, nie absrakcyjny kadr wiersza. Od domu wschodzącego niczym planeta nad placem - ta perspektywa będzie ulegać stopniowemu zawężaniu, stąd wspomniany już tytuł eseju Barańczaka: &quot;Tunel i lustro&quot;. </li><li>• Dodajmy też, że o ile wschodzące słońce kojarzy się z silnym jasnym blaskiem, o tyle dom który odbija światło słońca, redukuje ilość światła w kadrze. </li><li>• Trzecia kwestia dotyczy właściwie nie wschodzenia światłami, ale formy czasownika. Wszystkie prawie czasowniki w wierszu mają formę niedokonaną, co wzmacnia poczucie przeciągania się przedświtowych godzin i jednocześnie powtarzalności świtów')">wschodził</span>.</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, 'kolejny wyjątkowo szeleszczący wers: Z Sykiem CIchym wŚród puStych pRZedŚwitowych godzin (zsćśsżś). Jednocześnie na początku wersu nie wiemy jeszcze ani co, ani kto, podobnie jak z murem, który pełzł, tu dla odmiany rzeczownik SYK kojarzy się więc tym bardziej z pełzającym i syczącym gadem. Podobny jest też powtarzający się wielokrotnie szyk przestawny: pełzł mur, zamiast mur pełzł, z sykiem cichym, zamiast z cichym sykiem, choć takie zmiany nie wpłynęłyby pozornie na sens zdań w wierszu, odebrały by mu w przynajmniej częściowo napięcia i dynamikę')">Z sykiem cichym</span> wśród pustych przedświtowych <span class="interactive" onclick="showTooltip(event, '<ul><li>• przedświtowe godziny - liczba mnoga potęguje wrażenie rozciągłości w czasie, przeciągającego się czasu przedświtu i świtania, samo świtanie nie trwa wszak zbyt długo, od ciemności do widoku słońca, które wyłaniającego się zza horyzontu w zależności od położenia i pory roku mija maksimum godzina. Ale czy wiedza geograficzna może się przydać w analizie poezji? Zdecydowanie. Inaczej te mnogie godziny przedświtowe byłyby nie zamierzoną deformacją, ale prostym powieleniem zbiorowego doświadczenia. </li><li>• Puste godziny odsyłają nas do jednego z aspektów tak wczesnego przebudzenia, kiedy, o ile nie pędzi natychmiast do pracy, współtworząc zamęt pośpiesznych nóg, człowiek przebywa w sam na sam ze sobą w sposób nieraz dojmujący i rodzący skrajną samotność. Zwłaszcza podczas szarej zimowej pobudki. Tonacja wiersza, brak światła powoduje, że &quot;Świty&quot; Miłosza zapamiętać można tak, jak gdyby działy się w czasie zimowym (ciemność) lub jesiennym (szelesty), ostatnia część prawdopodobnie zaś wskazuje na wiosnę lub lato: Otwarte okna, muzykanci. Tak jakby wiersz dział się w róznych porach roku na raz.')">godzin</span></p>
+        
+	<p class="line">winda <span class="interactive" onclick="showTooltip(event, '<ul><li>• zatrzymajmy się tu przy słowie - parła, bo rozwija ono wachlarz odruchowych skojarzeń. Po pierwsze to ruch, któremu coś, jakaś materia, stawia opór, ruch ciężki, powolny, podobnie jak pełznięcie muru. Po drugie, biorąc pod uwagę tunel, którym porusza się winda, słowo - przeć - kojarzy się z parciem porodowym, które wyrzuca niemowlę na świat, podobnie jak winda wypluwa ludzi na świat, na parter, próg świata zewnętrznego. Parcie znaczy, że nie była biernym środkiem transportu, ale siłą działającą na ludzi, zmuszającą ich do konfrontacji z nieuchronnością czasu i codziennej egzystencji. </li><li>• Barańczak podkreśla też, że &quot;Świty&quot; to wiersz wyjątkowo akustyczny – każde zdanie niesie ze sobą wyraźnie zaznaczone dźwięki, które budują pejzaż dźwiękowy miasta. Windzie towarzyszy szelest kabli, klonom szelest liści, ptakom szumiące pióra. Na tle tych wszystkich szelestów i szurań i szumów, za chwilę odbije się radykalnie inny, nagły dźwięk: <span class=\'interactive\' onclick=\'showTooltip(event, &quot;<ul><li>• Za skojarzeniem porodu nasuwa się skojarzenie domu z matczynym brzuchem. Dom, jako przytulne, bezpieczne, chroniące nas przed światem gniazdo, często tak bywa kojarzone. Tu jednak mamy do czynienia z łonem, które jest surowe i obce i wyrzuca ludzi ze swego wnętrza. Znów Miłosz wprowadza bardzo silne napięcia między typowym pozytywnym skojarzeniem, a realizacją toposu. Jeśli pojawiają się w sztuce jakieś trudne i przykre skojarzenia, to dotyczą raczej uwięźnięcia. Nikły ślad tego znajdziemy w następnej strofie. </li><li>• Barańczak wskazuje, że pierwsza część &quot;Świtów&quot; podporządkowana jest ruchowi pionowemu – winda przemieszcza się w górę i w dół, dom wznosi się światłami nad placem, mur pełznie w ciemności. W przeciwieństwie do naturalnego wznoszenia się światła poranka, winda porusza się z mechaniczną determinacją. Sformułowanie - parła przez piętra - sugeruje przymus, nieuniknioność tego ruchu, jakby to była nie tylko fizyczna, ale i egzystencjalna siła napierająca na mieszkańców. Poranek i przejście do dziennej aktywności są nieuchronne. Ten przymus znajdzie swoje głębokie egzystencjalne rozwinięcie w kolejnych częściach wiersza&quot;)\'>rozwiń</span>')">parła przez piętra</span>. Kable <span class="interactive" onclick="showTooltip(event, 'spostrzeżenia11')">szeleściły</span>,</p>
+        
+	<p class="line">kogut krzykiem w organy deszczowych <span class="interactive" onclick="showTooltip(event, '<ul><li>•  oto wers, który aż pęka w szwach od formalnych treści. Dotąd mieliśmy powolny, ciężki ruch i rozmaite szelesty, tu nagle pojawia się zupełnie odmienny dźwięk, a jego efekt nie bierze się z poinformowania nas: a teraz słyszycie nowy dźwięk, bo kogut pieje. Poeta stosuje na raz a) antropomorfizację (kogut naraz krzyczy i dmie w rury niczym trębacz, ewentualnie jak wiatr) b) potężną metaforę transformującą rury rynny w gigantyczne organy, c) przeciwstawną do dominującej wcześniej organizację zgłoskową, d) inny rytm, do czego zaraz wrócimy, jak i do organizacji zgłoskowej, e) szyk przestawny: podmiot (kogut) - okoliczniki, dopełnienia, - i dopiero orzeczenie (dął), i f) przerzutnię: podmiot (kogut) na początku jednego wersu, orzeczenie (dął) dopiero na początku kolejnego wersu. Przerzutnia to niemal stały element Świtów, ale tutaj jest ona wyjątkowo przepastna, a tego rodzaju zabieg dynamizuje rytm i obraz. </li><li>• Ad c) o co chodzi z inną organizacją zgłoskową? otóż, jak już była o tym mowa - do tego momentu dominowało w wierszu akustyczne tło w postaci szelestów, nie tylko opisowo, ale też brzmieniowo, wzmocnione szeleszczącymi słowami, czyli takimi, w których jest więcej głosek szczelinowych, jak choćby słowo - przedświtowych - fonetycznie: szśfwh. W tym wersie zaś pojawia się ciąg: kogut w organy rynien i rur - pomijając epitet - deszczowych, mamy tu dominację twardych, dźwięcznych, gardłowych i wibrujących spółgłosek i niższych, czy też ciemnych samogłosek: ouoyyu. </li><li>• Ad d) na stronie możecie odtworzyć sobie rytm wiersza odegrany na małym bębnie. Kiedy przygotowywałam nagranie, nie mogłam przejść progu tego wersu, wykładałam się na nim jakieś 20 razy zanim udało mi się bez radykalnej zmiany tempa odtworzyć jego rytm. Tak nagle i tak bardzo się zmienia. </li><li>• Jedną z najważniejszych cech &quot;Świtów&quot;, wybadanych przez Stanisława Barańczaka, jest gra Miłosza z metrum. Rozpisując akcentowanie w kolejnych wersach, zauważa, jak poeta u poety, że Miłosz buduje regularności (dające wrażenie płynności, harmonii) po to, by za chwile je rozbić. Ten wers w rozbijackiej robocie przoduje. Dp wniosków Barańczaka odnośnie metrum dojdziemy analizując drugą i trzecią część wiersza')">rynien i rur</span></p>
+	<p class="line">dął, aż <span class="interactive" onclick="showTooltip(event, '<ul><li>•  wszystkie efekty, o jakich była mowa wyżej, jak i dodatkowo znów nietypowe akcentowanie na ostatnią sylabę, powodują, że dreszcz wywiera bardzo mocne wrażenie. Na pewno zmienia tempo, jest ruchem nagłym, błyskawicznym, oraz ostrym czy przeszywającym. Nie ma już pełznięcia, wschodzenia, parcia, jest błyskawiczny bieg. </li><li>• Ale co ten dreszcz znaczy? po co tu jest? Przyjrzyjmy się kontekstowi: dreszcz wywołany zostaje nagłym krzykiem koguta, który dmie w organy, dreszcz biegnie domem, jakby wzdłuż kręgosłupa, to bardzo mocna animizacja. Jest w nim coś organicznego, co ogarnia wszystkich, których dom jeszcze w swoim wnętrzu zamyka. Dreszcz domu, jego skala i niecodzienność zestawienia robią większe wrażenie niż dreszcz pojedynczego człowieka. </li><li>• Czujemy w tym dreszczu też jakieś wzdrygnięcie się, nie najprzyjemniejszy rodzaj budzenia. Ale jaki by nie był - wiemy z jaką szybkością biegnie ciałem dreszcz, wiemy, że zawsze jest nagły, wiemy, że może być doznaniem zarówno rozkoszy, jak i wstrętu, oznaką aprobaty, jak i separacji. Albo po prostu wyrzuceniem nagromadzonych emocji. Albo po prostu zimna. Ale pamiętamy to doznanie w ciele, i poprzez tak silne cielesne doznanie komunikujemy się z domem i wszystkimi jego mieszkańcami. </li><li>• Dreszcz, jak ziewnięcie, rozgrywa się niezależnie od świadomości. Wiersz tymczasem wciąga nas, nasze ciała w swoją przestrzeń i nawiązaniem do ich pamięci dreszczu i nagłym zwrotem rytmu i zgłoskami. Siłę wiersza można by mierzyć tym na ile zmusza osobę czytającą do uobecnienia się w kontakcie, w relacji z jego słowem. Świty przywołują naszą obecność niczym montaż atrakcji.<span class=\'interactive\' onclick=\'showTooltip(event, &quot;testujemy1&quot;)\'>skojarzenia13</span>')">domem biegł dreszcz</span>. <span class="interactive" onclick="showTooltip(event, 'o dziwo tutaj dopiero pierwszy raz pojawiają się ludzie, nie sugerowani animizacjami, ani nie zredukowani do nóg. Jacyś oni, którzy nie są nami (my pojawi się dopiero w następnej strofie), słyszeli - co słyszeli znów dowiemy się nie wcześniej niż w następnym wersie. Cały fragment od koguta poczynając na ziemi kończąc, operuje zmiennym rytmem, przerzutniami, oksymoronem, metonimią, akcentowaniem wymuszającym pauzy. Co za chwilę będzie widać, czy raczej słychać')">Słyszeli</span> <span class="interactive" onclick="showTooltip(event, 'słyszeli przebudzeni, być może krzykiem koguta i dreszczem domu przebudzeni brutalnie, śpiew. Czuć tu dźwięki, które pojawiają się jakby w półśnie. najpierw opornie przebijają się przez sen, potem już ze snu wyrywają, ale człowiek, jego ucho i ciało są jeszcze na progu snu i jawy, ciało w takim stanie jest bardziej podatne na dreszcz, inaczej też przetwarza dźwięki, czy w ogóle  wszelkie bodźce zmysłowe. Znamy wszyscy pewnie sytuację, w której nasz sen wkomponował w swoją fabułę jakiś zewnętrzny bodziec, co stwierdzamy dopiero w pełni wybudzeni. Za to ledwo co przebudzeni dokonujemy często onirycznej deformacji. Możemy zatem odczytać olbrzymiejące organy rynien i rur, dreszcz domu, śpiew i przeskok nagle do skali całej planety ziemi, jako charakterystycznie półoniryczną transpozycję i transformację rzeczywistości. Nadal budzą one zdziwienie, ale być może dzięki powyższemu kontekstowi i innym zabiegom poetyckim nie wydają się zbyt patetyczne czy pretensjonalne')">przebudzeni</span></p> 
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, 'dom, jego wysokość (dwuznaczność zamierzona), wpływająca na akustykę, powodują, że ludzie w środku znajdują się niemal w pudle rezonansowym. Krzyk koguta połączony z dreszczem, przekształcony zostaje przez półsenną świadomość w śpiew, którego nośnikiem jest sama materia domu. To są dzwięki przed którymi nie ma sie gdzie schować, nie mozna zamknąć przed nim ani ucha, ani drzwi, skoro dźwięk niosą ściany. czy to półsenna świadomość mieszkańców słyszy w tym śpiewie opowieść o ludzkiej egzystencji, czy też znaczenia słyszy poeta tylko - do indywidualnego rozstrzygnięcia')">w ścianach ten śpiew</span>, <span class="interactive" onclick="showTooltip(event, '<ul><li>• I tak oto dotarłyliśmy do końca strofy, do wymuszonej przed ostatnimi słowami pauzy i do bardzo istotnego oksymoronu. Barańczak podkreśla, że fraza <em>śpiew, straszny jak szczęście ziemi</em> to jedno z kluczowych napięć w &quot;Świtach&quot;. Śpiew, będący zwykle źródłem radości, tu bliższy jest grozy. To głos dochodzący z wnętrza kamienicy, niczym z nawiedzonego domu, obdarzonego własnym wewnętrznym życiem. Budząc grozę, jednocześnie emanuje niesamowitością, rodzi dreszcz, dudni w ścianach. </li><li>•Zacznijmy od pauzy. Której nie widać, można ją tylko usłyszeć. Miłosz wymusza tę pauzę, tworząc sekundowy suspens przed wypowiedzniem zdania o ogromnym ładunku semantycznym, poetyckim i egzystencjalnym. Jak to się dzieje? W ciągu słów <em>(...)[T]en śpiew, straszny jak (...)</em> sąsiadują ze sobą dwie akcentowane sylaby i żadna z nich nie oddaje akcentu drugiej. Nie da się tego przeczytać TEN śpiew, STRASZny, bo w ciągu: ŚCIAnach ten ŚPIEW, zaakcentować musimy <em>śpiew</em>. Oczywiste, że nie da się też przeczytać: ten ŚPIEW straszNY. Jedyne co pozostaje to zawiesić głos po słowie <em>śpiew</em>, nabrać powietrza i czasu, i odczytać wers w ten sposób: <em>w ścianach ten śpiew</em> PAUZA <em>straszny jak szczęście ziemi</em>. Z kadencją opadającą. </li><li>• Ten śpiew wyobrażam sobie, jako echo Miłoszowego hymnu, np. Na trąbach i na cytrze, choć tu jest znacznie więcej wątków miejsko-społecznych. Szczęście istnienia, ale szczęście straszne.: <span class=\'interactive\' onclick=\'showTooltip(event, &quot;<ul><li>• Ta oksymoroniczna konstrukcja jest dla światoodczucia poety charakterystyczna. W wizyjnych, czy później inkantacyjnych i hymnicznych poematach powraca głęboka, manichejska świadomość zła, rozumianego, jako cierpienie, i pełna ekstaza istnienia. Literatura nie musi wybierać, jest w niej miejsce na wszelkie sprzeczności, jeśli tylko znajdą sobie adekwatną i oryginalną formę. </li><li>•Z tej perspektywy śpiew domu to metonimia głosu ludzkości. I to ludzkości od zawsze, choć może mniej niegdyś samotnej. Co jeszcze jest tu typowe dla Miłosza, i co powróci w drugiej i w trzeciej części wiersza, to przechodzenie od szczegółu do ogółu, lub odwrotnie, jakby istniał i doświadczał świata na jednocześnie w wielu wymiarach, widząc drobne szczegóły na tle galaktyk: tak to jest dom, ten a nie inny, jednocześnie jest to dom domów, dom reprezentatywny, jest to śpiew w ścianach domu, ale jest to może śpiew całej ludzkości, owszem to tam było go słychać, ale równocześnie dochodził z całej planety, ten śpiew, straszny jak szczęście ziemi&quot;)\'>rozwiń</span>')">straszny jak szczęście ziemi</span>.</p>  
+      
+	<p class="line">&nbsp;</p>  
+	        
+	<p class="line">Już zgrzyta <span class="interactive" onclick="showTooltip(event, '<ul><li>•  Już zgrzyta tor – te słowa działają niczym kod uruchamiający rymy obrazów, dźwięków i rytmów. Pojawiają się w krótkim przebłysku. Podobnie jak przebiegający dreszcz, zgrzytnięcie toru, to dźwięk nagły, ostry, i jednocześnie powtarzalny, tj. głęboko utrwalony w miejskiej pamięci, jako  sygnał dźwiękowy miasta. </li><li>• Można zauważyć też, śledząc wszelkie napięcia w wierszu, że doznanie industrialnego pejzażu skontrastowane zostało z miększymi dźwiękami natury. Ruch pionowy (wysokość, wschodzenie, winda) z implikowanym ruchem poziomym (tory, a później i droga). Ale ten tor jest czymś więcej niż częścią miejskiej przestrzeni. </li><li>• Po pierwszej lekturze, zastanawiałam się nad tym, jak to się dzieje, że czytając go tak wyraźnie przeczuwa się przęsła scalające utwór, i dlaczego wydaje mi się, że wiersz przesycony jest szumem i pulsem krwi i melancholią wielkiego pustego z torowiska. Oczywiście takiego torowiska tu nie ma, ale zgrzytnięcie toru indukuje w wiersz ukryte obrazy i rytmy. </li><li>• I tu znów przychodzi nam z pomocą Stanisław Barańczak. Jego &quot;badanie owadzich nogów&quot; dostarcza materiału do interpretacji, taka kolejność jest optymalna, ale wyjątkowo rzadka, mało kto potrafi dostrzec powiązania między metrum a tematem, Barańczak sam był wybitnym poetą. </li><li>• Zauważa on, że Miłosz regularnie odtwarza metrum, jakiś podstawowy rytm, po to, by po chwili go zburzyć. Uznaje go za odpowiednik rytmu krwi, pulsu, który jest świadectwem życia, ale jednocześnie zegarem odmierzającym nasz czas. Burzenie wynika z niezgody na podporządkowanie się prawom czasu. Zwróćcie uwagę, że w nagraniu rytmu na bębnie słychać na początku drugiej strofy wyraźny rytm kół pociągu. </li><li>• Czas przybiera zresztą w świtach też zgoła inne niż rytm, zaskakujące formy, ale do tego dojdziemy w swoim czasie. </li><li>• Póki co jednak zatrzymajmy się na pulsowaniu krwi. Ponieważ analogicznie do pulsu, równomierny stukot serc, przypomina stukot kół pociągu, kolejny dźwięk tak dobrze nam znany. </li><li>• Pociągi, torowiska, stukot kół na szynach przywołują wyobrażenie podróży w jedną stronę, zabarwionej nie rozrywką a melancholią fatum, z góry określonego celu, podległego ułożeniu torów. Nieuchronność kolein ludzkiego losu powraca w wierszu po wielokroć. </li><li>• Ludzkość bowiem podlega dwóm rodzajom czasu: linearnemu, którego nieustanny przyrost wiąże się z nieustanną utratą naszego osobistego czasu, oraz cyklicznemu na poziomie doświadczenia dni, pór roku, przymusowego odtwarzania tych samych procesów przez każdego kolejnego przybysza. ')">tor</span> I dzień. 
+	
+	<span class="interactive" onclick="showTooltip(event, '<ul><li>• Pora przyjrzeć się temu, co w wierszu podporządkowane jest czasowi cyklicznemu, widocznemu w słowie &quot;znowu&quot;. Sugerowany on jest już w tytule, który nie mówi o świcie, lecz o świtach. W pierwszej strofie wszystkie czasowniki występują w formie niedokonanej, wschodził, nie wzeszedł, kogut dął, nie zadął, słyszeli, nie usłyszeli. A w obrębie tej powtarzalności, także zwielokrotnione godziny przedświtowe. </li><li>• O ile rytm pierwszej strofy jest powolny, o tyle w drugiej odrobinę przyśpiesza. Skracają się wersy, zagęszczają akcenty. </li><li>• Dymy – zasłaniające niebo, budynek i jego okolica są kwintesencją miasta, konkretnego w doświadczeniu, ale niosącego uniwersalną wizję ludzkiego losu, ogarniającego straszne szczęście ziemi.')">I znowu dymy.</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>•  Z uwagi na tonację drugiej strofy &quot;wiemy skądś&quot;, że niebo zasnute jest chmurami i dymami i nie przepuszcza zbyt wiele światła. Świt zamiast bić blaskiem słońca, przynosić wolność, odnowę i odkupienie poranka, przynosi ciemność i zamknięcie. Powitanie dnia, jest oksymoronicznym powitaniem ciemności </li><li>•  natomiast owo &quot;O&quot; jest dwuznaczne, wnosi odrobinę hymniczności lub zawodzenia w ten zasnuty melancholią powtarzalności i świtu obraz, czy prowadzi ku powitaniu &quot;O, Ty, ciemny dniu!&quot;, czy lamentowi: &quot;Ooo, jakże ciemny dzień&quot;. Jakby tej kwestii nie rozstrzygnąć jest zawołaniem, przebijającym się przez gęstniejące dymy')">O, ciemny dzień</span>. 
+	<span class="interactive" onclick="showTooltip(event, 'Pierwszy raz w wierszu pojawia się &quot;my&quot;. Kogo obejmuje, nie jest to jasne. Możliwe też, że zostaje wprowadzone nie po to, by określić jakąś grupę, tylko po to by z &quot;onych&quot;, z niezróżnicowanej grupy ludzi w trzeciej osobie, przerzucić pomost do &quot;ja&quot;, potrzebne jest, jako etap budzenia się i wyłaniania najpierw &quot;my&quot; a następnie indywidualnej świadomości.')">Nad nami, zamkniętymi</span></p>
+        
+	<p class="line">w izbach <span class="interactive" onclick="showTooltip(event, '<ul><li>• &quot;na piętrze&quot;, traktujemy jako elipsę, gdyż chodzi zapewne o piętro ostatnie, takie skojarzenie nasuwałby widok ptaków ponad nim, trochę, jakby ci zamknięci patrzyli w górę przez lufcik, czy też przez okno, ale na niebo, na którego tle krążą stada ptaków. </li><li>•  Ważniejsza jednak jest pewna apokaliptyczność tego obrazu, ciemne niebo i nie jedno stado, ale stada ptaków, przywodzą na myśl chwilę przed burzą, ale i sępy i wrony krążące nad padliną. Myślałby człowiek, że jak ktoś widzi ptaszki przez okno, to miło, otóż nie, nie w tym utworze.')">na piętrze, przelatują stada</span></p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, 'szumiących śmiganiem - kolejna fraza o cechach onomatopeicznych, ale przełamana dokładnym, lecz odległym wersowo męskim rymem łączącym drugą strofę z pierwszą: mur - rur - piór. Jedno z fonicznych przęseł tego utworu.')">ptaków 
+	szumiących śmiganiem piór</span>.</p>
+        
+	<p class="line">Za mało. Życia jednego <span class="interactive" onclick="showTooltip(event, 'Powtórzenie &quot;za mało&quot; - nie tylko podkreśla, że jedno życie nie wystarcza, ale wprowadza też klimat wewnętrznej refleksji, której mówiący nie relacjonuje post factum, ale do której dopuszcza nas na bieżąco w chwili jej trwania. Dlatego nie wiemy jeszcze z jakiego powodu życia jednego za mało. Czy chodzi o lęk przed nieuchronnością śmierci? O dziwo nie całkiem.')">za mało</span>.</p>
+        
+	<p class="line">Dwa razy żyć <span class="interactive" onclick="showTooltip(event, '<ul><li>• W tym młodzieńczym wierszu zawarty jest <em>in nuce</em> cały późniejszy Miłosz – poeta &quot;smutnej planety&quot;, ale poeta, któremu na tej planecie &quot;życia jednego za mało&quot; - pisze Stanisław Barańczak. </li><li>• Wyznanie &quot;Dwa razy żyć chciałbym na smutnej planecie&quot; słowa te rozwijają też oksymoroniczne zestawienie &quot;straszny, jak szczęście ziemi&quot;, zamykające pierwszą strofę')">chciałbym na smutnej planecie</span></p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• Ten wers zawiera w sobie odniesienia historyczne, społeczne i metafizyczne, jak to często raz u Miłosza bywa. </li><li>• Miasta samotne oznaczają raczej  wylęgarnie ludzkiej samotności, niż samotność miast na mapie. To w nich stoją domy podzielone na piętra i mieszkania, które izolują mieszkańców, w nich panuje wszechobecna alienacja pracy, oderwanie od żywej ziemi pociąga za sobą poczucie metafizycznego wydziedziczenia, klimat Ziemi Ulro. </li><li>• Ale nawet wsie nie pozwalają ludziom w pełni zamieszkiwać ziemi, ziemia jałowieje, i dosłownie i zarazem jak w &quot;The Waste Land&quot; Eliota. </li><li>• Więcej na temat relacji Eliot – Miłosz i William Blake - Miłosz znajdziesz w podsumowaniu w dziale <em>analiza</em> i w dziale <em>konteksty</em>')">w miastach samotnych, we wsiach pełnych głodu</span>,</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• &quot;Wszelkie zło&quot; u Miłosza &quot;sekretnego zjadacza manichejskich trucizn&quot; oznacza przede wszystkim cierpienie wpisane w materię istnienia, &quot;rozkład ciał&quot; to właściwie rozwinięcie poprzednich słów. Poeta patrzy na nie, nie dlatego, żeby były same w sobie fascynujące, one po prostu istnieją. </li><li>• Jak pisze Barańczak: &quot;Świty&quot; są, najkrócej, wierszem o – zarówno zbiorowym, jak i pojedynczym – ludzkim losie, naginanym przez prawa kosmosu i prawa cielesnej biologii do rytmu przemian dnia w noc i młodości w starość, o losie miotającym się pomiędzy obojętnością natury i obojętnością historii – mówi nam Barańczak. </li><li>• Te słowa wprowadzają także do pejzażu wiersza ciała, nie metaforyczne, ale fizyczne i fizycznie istniejące i niszczejące w czasie. Można uznać je preludium konkretnej, jednostkowej cielesności istnienia, która pojawi się wraz z kobietą w trzeciej części wiersza.')">patrzeć na wszelkie zło, na rozpad ciał</span>,</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• Oddajmy znów głos analizującemu &quot;Świty&quot; poecie, Barańczakowi: Tocząca się tu w materii brzmieniowo-rytmicznej &quot;walka z wierszem&quot; jest zewnętrzną formą głębiej ukrytego buntu poety – zdefiniowanego jako ten, który pragnie &quot;prawa zbadać&quot; – przeciw koniecznościom egzystencji, przeciw jej nieuznającym sprzeciwu ograniczeniom, jej despotycznym rytmom i porządkom. </li><li>• Walka z wierszem, czy też walka wierszem, jak postuluje Kozaczewski, polega tu na wspominanym już zmierzaniu do regularności rytmu i każdorazowym burzeniu jej w niezgodzie na równomierne, nieuchronne odmierzanie czasu naszej egzystencji. Poeta lepiej niż inni czuje prawa, którym podlega czas. Jakby był w stanie złapać go w pułapkę i puścić kantem. </li><li>• Pora jednocześnie skierować naszą uwagę ku najistotniejszemu i najcenniejszemu najprawdopodobniej napięciu, jakie poeta funduje nam w &quot;Świtach&quot;, Tonacja wiersza jest ciemna, czas nieubłagany, los ludzki przesycony tragizmem. Ale obok ostatecznego i odtwarzanego wciąż cierpienia, człowiekowi towarzyszy potężne napięcie ciekawości między nim a światem, między nim a czasem. Tu dowiadujemy się czemu jedno życie na smutnej planecie nie wystarczy, za mało go mamy, aby w pełni zaspokoić nieposkromioną ciekawość, żądzę poznania.')">i prawa zbadać, którym był podległy</span></p>
+        
+	<p class="line">czas, co nad nami <span class="interactive" onclick="showTooltip(event, '<ul><li>• Obrazowi upływu czasu jako fizycznego zjawiska, rytmu natury, towarzyszy obraz siły niekontrolowanej, działającej ponad nami, niczym metafizyczna potęga, nawet bardziej obojętnej wobec nas niż rytm zmian i przemijania w naturze, ale jednocześnie fascynującej. </li><li>• A jednak te rozważania są w pewnym sensie drugorzędne wobec formalnych cech tego wersu. Dziwne, prawda? Że jakieś akcenty czy rymy mogą być ważniejsze od filozofii, od metafizyki. Co gorsza udamy się teraz tropem całkiem subiektywnym i stwierdzimy, że to jeden z najpiękniejszych wersów tego utworu. </li><li>• Po  przywołaniu okrutnego wymiaru egzystencji, który natychmiast zmienił rytm wiersza, poeta wynagradza nam tę świadomość, której nosicielami jesteśmy tak czy inaczej, domykając znów strofę wciągającymi aż po dreszcz satysfakcji: oryginalnością i rozpiętością metafory, harmonijnym rytmem, rymem: ciał - wiał, i idącym za tym ukojeniem. Na tym polega potęga poezji. Wie też, że musimy nabrać haustu życia przed kolejną podróżą, w którą zaraz nas wyśle. </li><li>• Więcej o kluczowej kwestii formy znajdziesz w podsumowaniu w dziale <em>analiza</em>')">jak wiatr ze świstem wiał</span>.</p>        
+	
+	<p class="line">&nbsp;</p>
+	       
+	<p class="line">Chórem <span class="interactive" onclick="showTooltip(event, '<ul><li>• Czemu służą ci muzykanci? Trzecia część, następująca, kiedy świat już się wybudził, a dźwięki zlały się w jakiś z grubsza stały poziom decybeli, potrzebuje swojego własnego pejzażu dźwiękowego. </li><li>• Ich chór to nie lament i nie pieśń pochwalna, ale zawodzenie, trochę jakby dźwięki osiadły między tonami.  W muzyce zawieszenie nut to moment napięcia, jeszcze nierozwiązany akord – jakby świat wiersza trwał w zawieszeniu, w oczekiwaniu na dźwięk, który domknie wybrzmiewający passus. W &quot;Świtach&quot; dźwiękiem domykającym będzie dopiero skowyt czasu. </li><li>• Muzykanci nie są symbolem, są jednak czymś więcej niż ta konkretna grupa ludzi, są metonimią melancholijnego tła, nie pocieszającego, ale wygładzającego odrobinę nieprzyjazność czasu i przestrzeni raniących ludzkie świty. Melancholijne zawodzenie łączy ludzkie doświadczenie we wspólnym podkładzie muzycznym. Na tym tle dopiero ona wstanie ze zmiętej pościeli')">zawodzą</span> w podwórzu kamienicy</p>
+        
+	<p class="line">muzykanci. U okien <span class="interactive" onclick="showTooltip(event, '<ul><li>• piękne <em>pars pro toto</em>. Gdyby rozwinąć wszystko, co sugerują te dwa wersy, trzeba byłoby powiedzieć, że ludzie nikną w ciemności, ale widzimy ich ręce, wsparte prawdopodobnie na okiennych parapetach, ludzie chwilowo znieruchomiali, zawiesili poranne czynności, przyciągnięci zawodzeniem muzykantów i że w podwórzu kamienicy nie ma zbyt wiele światła, inaczej wyraźnie odbijałoby się w oknach przyćmiewając odbicie światła od skóry. </li><li>• Miłosz tworzy kolejne napięcie - między wersami, w których na określenie jednego zjawiska, ludzi słyszących pianie koguta, poświęca trzy razy tyle słów, podczas gdy tu zamiast użyć 35 słów, jak z my w powyższym, zasadnym rozwinięciu, poświęca całej sytuacji dwa wersy.')">świecą ręce</span> zasłuchanych.</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• zauważmy, że mimo konkretnej sytuacji, i konkretnej bohaterki, nadal akcją rządzą czasowniki niedokonane. Ona nie wstała, lecz wstaje. Być może jest to wstawanie rozciągnięte w czasie, w którym pościel jeszcze woła człowieka, być może podobna jak w pierwszej strofie codzienna powtarzalność tych samych czynności. </li><li>• przestrzeń mieszkania, mimo, że intymna, nie jest przytulna, nawet prywatne mieszkanie jest bardziej przestrzenią wydziedziczenia, niż bezpiecznyh granic oswojenia. </li><li>• W trzeciej części wiersza, ekonomia słowa jest zdecydowanie po stronie zwięzłości. Mimo, że nie znamy imienia kobiety, zostajemy dopuszczeni do intymnej relacji, w której nie tylko widzimy pościel, ale nawet zmiętą pościel, i pozostawione w tej pościeli sny. </li><li>• Jakub Kozaczewski pisze: I tak w &quot;Świtach&quot; podmiot wiersza ujawnia się jako jeden z mieszkańców kamienicy, ale równocześnie przysługuje mu atrybut jakby kosmicznego, zupełnie zewnętrznego spojrzenia, by w pewnym momencie usytuować się niejako w stojącej przed lustrem kobiecie - bohaterce wiersza. Z jednej więc strony podlega prawom wynikającym z umiejscowienia w świecie przedstawionym, z drugiej jednak dysponuje pewną nadświadomością, a przede wszystkim nadmożliwością, biernego co prawda i mentalnego jedynie, ingerowania w świat postaci i zdarzeń. Działa tu zatem reguła empatii. </li><li>• Działa tu też, dodajmy, pewien porządek płci, rozumiany na poły tradycyjnie: mężczyzna - niebo, ptaki, logos, duch, żądza poznania, świat; kobieta - pościel, ciało, lustro, suknie, podróże, macierzyństwo. Nie jest jednak konsekwentnie konserwatywny, a dlaczego, to zobaczymy za chwilę.')">Ona wstaje ze zmiętej pościeli</span>.</p>
+        
+	<p class="line">O sukniach i podróżach <span class="interactive" onclick="showTooltip(event, 'To bardzo ciekawa formuła, nie dowiadujemy się bowiem, o czym ona śniła, ale o czym w snach myślała. Trochę jakby sen był jedynym czasem, w którym można myśleć o bezinteresownym własnym czasie, i jednocześnie jakby sny nie spełniały swojego zadania, nie przenosiły bohaterki w inną przestrzeń, nie stawały się podróżami, kojącą ucieczką od jawy, tylko właśnie jedyną przestrzenią, w której można o ucieczce chociażby pomyśleć.')">w swoich snach myślała</span>.</p>
+        
+	<p class="line">Przed <span class="interactive" onclick="showTooltip(event, '<ul><li>• Stanisław Barańczak pisze o kobiecie przeglądającej się jak w studni w <em>czarnym lustrze</em>. &quot;Przestrzeń ulega stopniowemu zawężeniu, od wspólnej przestrzeni <em>placu</em> i górującego nad nim <em>wysokiego domu</em>, poprzez widok z okna i wnętrze mieszkania, aż po końcową przestrzeń ograniczoną ramami lustra&quot; </li><li>• W tym obrazie lustro, zwykle symbolizujące wyidealizowane bądź zniekształcone odbicie, staje się ciemnym obrazem, kojarzącym się z lustrem wody w ciemnej studni, miejscem spotkania ze sobą,  konfrontacji z mrokiem – zarówno indywidualnym, jak uniwersalnie egzystencjalnym, które nie pozwala uciec od nieuchronnej prawdy o przemijaniu i rozkładzie, miejscem spotkania ze swoim i nie tylko swoim przeznaczeniem.')">czarne lustro</span> idzie. <span class="interactive" onclick="showTooltip(event, 'młodość trwa krótko, ale zarazem przesłania nam cały świat. Pozwala się rozmnażać w czasie przed upadkiem w czas. I przed zyskaniem takiej świadomości, jaką ma bohaterka, która wie już co czeka jej dziecko. Te trzy słowa w kontekście następnego wersu, mówią tyle, że młodość właściwie wygląda na wielkie, choć krótkie oszustwo')">Młodość krótko trwała</span>,</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• Do jakiego czasu odnosi się owo <em>nie wiedział nikt</em>? prawdopodobnie do tej samej krótkiej młodości, kiedy zapadają najważniejsze decyzje, i.in. o sprowadzeniu na ten świat nowego człowieka. </li><li>• Jednocześnie, choć passus przypomina monolog wewnętrzny i to monolog przedsłowny, czy może raczej wysłowienie przedsłownego stanu świadomości, i ten brak świadomości i egzystencjalny potrzask są doświadczeniem uniwersalnym')">nie wiedział nikt</span>, że praca dzień <span class="interactive" onclick="showTooltip(event, 'praca wyalienowana wypełniająca egzystencję większości ludzi, jednocześnie wywłaszcza ich z własnego czasu. Trud jest zbyt wielki, żeby w planie doby było miejsce na życie, odpoczynek jest martwy, nawet sny są tylko powszechnym prostym rewersem trudów dnia, nawet tam nie ma miejsca nas twórczy aspekt życia')">rozdzieli</span></p>
+        
+	<p class="line">na wielki trud, na martwy odpoczynek,</p>
+        
+	<p class="line">i <span class="interactive" onclick="showTooltip(event, 'chociaż w czasie, w którym rozgrywa się wiersz, księżyc nie świeci, przywołanie go włącza do pejzażu noc i kolejne, zimne, słabe światło. Ponadto księżyc jest tu na raz i tradycyjną dekoracją scen miłosnych i niemym świadkiem, który nawet zatrzymuje się nad przemijającymi pokoleniami, niczego jednak jego obecność nie ogrzeje, nie podgrzeje krwi, nie przeniesie do innej rzeczywistości')">księżyc</span> w nocy <span class="interactive" onclick="showTooltip(event, 'zwróćmy uwagę na wybitą znów cykliczność tych zdarzeń')">co wiosny</span> przystanie</p>
+        
+	<p class="line">nad <span class="interactive" onclick="showTooltip(event, 'sen snużonych wygląda na martwy odpoczynek bez snów i jakiegokolwiek wymknięcia się uściskowi egzystencji')">snem znużonych</span>. <span class="interactive" onclick="showTooltip(event, 'TA-da-TA-da-DAM ten fragment okolony pojedyczymi amfibrachami faktycznie brzmi w kompozycji wiersza jak stukot. Nawiązuje też do stukotu kół pociągowych z ich nieubłaganymi torami, z początku 2 strofy. Tutaj mamy zmęczony, suchy stukot. Za chwilę ujrzymy żyły. A dudniący puls pojawi się pod koniec')">W stuku ciężkim serc</span></p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, 'Miłosz balansuje tu wahadłowo między nią, pojedyńczą osobą, na tle izolującego wnętrza, konkretnością odbicia, choć słabo widocznego z braku światła, a tą ludzkością, która oddaje swoje życie za przetrwanie, tracąc prawo uczestniczenia w polu sił zbawczego Erosa, wraz z końcem wczesnej krótkiej młodości, wydziedziczeną ze swoich ciał, i z porządku natury. Jej pojedyńcze doświadczenie stanowi pars pro toto niezliczonych pokoleń za nimi i przed nimi')">nam ani wiosna już, ani kochanie</span>.</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• Patrząc od strony formalnej: jeden z wielu równoważników zdań, w &quot;Świtach&quot; staowią one, jak zwraca na to uwagę Barańczak,  25% wypowiedzeń, co działa na rzecz zdynamizowania tekstu przez kontrastowanie radykalnie krótkich i długich fraz. Jak np.:I dzień. Albo: Za mało. I trzy ostatnie wersy I części, ktorych frazy mają po ok. 10 słów. </li><li>• Zwięzłość pierwszej części zdania znów możliwa jest dzięki elipsie, nie ma tu <em>muszę zasłonić</em>, czy nawet <em>trzeba zasłonić</em>, ten nakaz, to oczywista konieczność, ze swoim ciałem się nie spotyka na dłużej, to, że uda przemówiły swoją pamięcią, to wypadek przy pracy, nikt nie chce ich słuchać, nic z tego nie wyniknie dobrego, tego, co wspominają nie da się odwrócić')">Uda zasłonić, niech nie wspominają</span></p>
+        
+	<p class="line">kłębami cienkich fioletowych <span class="interactive" onclick="showTooltip(event, '<ul><li>• W całym wierszu pojawiają się tylko trzy kolory: czarne lustro, kłęby fioletowych żył, siwy trotuar, a nawet o nich trudno powiedzieć, żeby były to barwy żywe i nasycone. Czarne lustro to brak światła, zatem czerń jest de facto brakiem koloru. Siwy, podbity przez obecność księżyca, jest kolorem wyblakłym, kolorem starości. </li><li>• Skąd tu fiolet? Fiolet skojarzony z ciałem jest barwą2 popękanych żył, wynaturzonego krwiobiegu, cienkich nici pod skórą, śladów zmęczenia, czy nawet kolorem zapowiadającym rozkład. Ale kłęby cienkich fioletowych żył to przede wszystkim wspomnienie ciała po parciu porodowym, macierzyński stygmat. </li><li>• Widzimy w tym wersie dwa przęsła: wspomnienie porodu, nie wprost, podobnie jak nie wprost pojawia się skojarzenie w pierwszej strofie <em>winda parła</em>, oraz niedokładny, męski rym <em>łzy - żył</em>')">żył:</span></p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• Ważne jest, że oznajmienia te pojawiają się po dwukropku, jako głos z ciała i świadomości bohaterki trzeciej części wiersza. W historię jej ciała wpisana zostaje przyszła historia dziecka i odpowiedzialność za powołanie nowego istnienia. </li><li>• Ale mozna ten dwukropek potraktować, jako dwukropek następujący po wszystkich wcześniejszych wersach, jakbyśmy dotarli do miejsca, do którego wiersz zmierzał od początku </li><li>• Dziecko w tomie &quot;Trzy zimy&quot; zajmuje szczególne miejsce, przykłady na to znajdziecie w dziale KONTEKSTY. W Świtach jest to pierwsza konkretna osoba, która wybiega z kamienicy, przez co widzimy dziecko niejako z tyłu, nie znamy jeszcze jego twarzy. </li><li>• Ewa Kołodziejczyk w tekście poświęconym temu cyklowi  pisze: Personę &quot;Trzech zim&quot; też poznajemy in statu nascendi. Kto ma się narodzić? Poeta, człowiek. Jak się rodzi? W cierpieniu doświadczanym wielorako: poprzez uczestnictwo w historii (Kołysanka, O książce), poprzez obserwację rzeczywistości społecznej (Świty), w przeżyciu osobistym (Elegia, Posąg małżonków), w istnieniu w naturze (Pieśń)')">to dziecko goni schodami kamienicy</span>,</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• mamy tu powtórzenie leksykalne i syntaktyczne, niczym w pieśni, i podkreślenie <em>to dziecko</em>, silne napięcie między konkretnością a ogólnością istnienia, to dziecko, to a nie inne, bo zawsze egzystencji doświadcza się osobiście, niepowtarzalnie, i zarazem dziecko, bez twarzy, bez imienia, dziecko jeszcze nie całkiem oddzielone od ciała matki, co słychać w podkreśleniu <em>pójdzie jej dziecko</em>, każde dziecko każdej matki </li><li>• w tych dwóch wersach akcja przyśpiesza, jakby i czas nagle przyśpieszył </li><li>• &quot;nic chyba nie jest przypadkowe w tym zdumiewającym utworze&quot; pisze Stanisław Barańczak. Siwy trotuar też nie jest przypadkowy. Podobnie jak księżyc, którego przecież nie ma teraźniejszości utworu, zostawia ślad swojego siwego blasku, tak tu siwy kolor, choć dotyczy tylko chodnika, rzuca się cieniem na przyszłą egzystencję dziecka, jego z góry przesądzony los ')">to dziecko biegnie siwym trotuarem</span>.</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, 'Jeszcze daleko słychać śmiech – jej dziecko jeszcze się śmieje. Ale nie tutaj, nie w centrum wiersza. Na obrzeżach, w odległości. Ten śmiech ma datę ważności, jeszcze trwa, ale nie ma wątpliwości – skończy się, tak jak wszystko inne. Jest w nim resztka beztroski, ale już naznaczonej dystansem. Śmiech to dźwięk, który zaraz przestanie wybrzmiewać – ostatni znak radości w czasie, który zna już swój koniec.')">Jeszcze daleko słychać śmiech</span></p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, 'wers ten przypomina napięcie ironii tragicznej - bohater nie zna swojej z góry przesądzonej przyszłości, my ją znamy, persona wiersza ją zna. Ale ironia ta odniesiona do śmiechu dziecka jest zbyt bolesna. Jakby zawiedziona miała zostać wszelka nadzieja, wszelkie oczekiwania. Poznanie, jak w Księdze Koheleta oznacza ból <em>w wielkiej mądrości - wiele utrapienia, a kto przysparza wiedzy - przysparza i cierpień</em>. Ostatni wers z &quot;Do księdza CH.&quot; mówi <em> dziś ja, uczeń, poznałem nicość form powabnych, otośmy już obaj z jednego zakonu</em>')">na nowo, wszystko na nowo pozna</span></p>
+        
+	<p class="line">i drogą <span class="interactive" onclick="showTooltip(event, '<ul><li>• Motyw ten pojawia się w cyklu &quot;Trzy zimy&quot; parokrotnie. Przyszłość dziecka dorastającego i do uniwersalnego i do swojego własnego przeznaczenia przybiera postać drogi przede wszystkim rozległej, szerokiej niczym, kraje, niczym ziemia, i zarazem mroźnej, zimnej, północnej: <em>Schodzi uczeń marzenia na północne kraje, na połamanych polach w lodowej cysternie, z niebios ogrodu zimnego spływa ... okrutne światło</em>. </li><li>• Ogrom przestrzeni wywołuje wrażenie niemal agorafobiczne. Epitety olbrzymia, pusta i mroźna właściwie podbijają nawzajem swoją wymowę, ukazując przestrzeń, w której nie ma czego się chwycić, więc pustą, obcą, nieoswojoną, więc zimną, niezależnie od dosłownego zimna pónocnych krajów')">olbrzymią, pustą, mroźną</span>,</p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, '<ul><li>• już rytm poprzedniego wersu dudnił, tutaj dudnienie i grzmot przybierają nieco inne metrum, o jeszcze mocniejszym wydźwięku, tutaj już bez przecinków. Dzwonienie grzmotu, nietypowe zestawienie, odwołuje się do cielesnego doświadczenia, kiedy huk dzwoni nam w uszach i ogłusza. Zasadny patos ostateczności osiąga już niemal punkt kulminacyjny, zaczarowani nie pytamy od razu: ale co to znaczy? </li><li>• to bardzo trudny wers, którego słowa tłumaczą się bardziej dźwiękiem i rytmem niż sensem dosłownym, czy nawet metaforycznym. Warstwa wrażeniowa wyprzedza znaczenie metafory dzwoniącego grzmotu - trudno rozstrzygnąć czy pojawia się nad drogą olbrzymią, czy w ciele drogami tętnic, co jest tu czego metaforą, czy tętnice metaforą drogi, czy obszar tętnic metaforą ciała, być może droga dziecka zwęzi się nagle w tętnicę, być może przeznaczeniem dziecka będzie stać się krwią tętniącą w żyłach świata, a być może widzimy to z perspektywy kobiety, bo dziecko będzie wędrować obszarem jej tętnic, jego los raz na zawsze wpisał się swoim przyszłym losem w ciało matki.')">dzwoniącym grzmotem tętnic obszarem</span></p>
+        
+	<p class="line">pójdzie <span class="interactive" onclick="showTooltip(event, '<ul><li>• W tym wersie po raz pierwszy pojawia się czas przyszły <em>pójdzie</em>, co ma sens w konstrukcji całego wiersza, zaczyna się on od powolnego czasu przeszłego, niedokonanego, czasu trwania i powtórzeń, przechodzi przez czas teraźniejszy już zgrzyta tor, ona wstaje, aż przyśpiesza i dochodzi do przyszłości, kiedy pojawia się dziecko. Jak pisze Barańczak: &quot;W tym niezwykłym wierszu krzyżuje się ze sobą kilka różnych porządków, kilka różnych planów lirycznej akcji. Upływ czasu dokonuje się tu przecież nie tylko w mikroskali, nie tylko od momentu przebudzenia poprzez moment wstania aż do momentu porannego stawienia czoła życiu. Czas toczy się również w makroskali: od przeszłości poprzez teraźniejszość ku przyszłości, od młodości poprzez wiek dojrzały ku starości; i znowu ten trójczłonowy podział pokrywa się ściśle z tryptykową kompozycją wiersza&quot;. </li><li>• Ten wers stanowiący punkt kulminacyjny utworu, wraca już bezpośrednio do kobiety zaimkiem JEJ. Poznanie tragizmu ludzkiej egzystencji, które czeka na dziecko jest oświadczane w najbardziej bolesny sposób, bo z perspektywy matki. </li><li>• przy tej okazji warto wrócić do wcześniejszego spostrzeżenia, że aspekty egzystencji: cielesność, wygląd, spojrzenie w lustro, macierzyńswo po stronie kobiety, metaświadomość, żądza poznania, spojrzenie w niebo, widok z lotu ptaka po stronie mskiego podmiotu, sa przyporządkowane stereotypowo, z jednym zasadniczym wyjątkiem. Nie znam innego utworu, który tak wyraziście czyni z matki świadomy podmiot tragiczny, konfrontujący się z faktem skazania dziecka na egzystencję ')">jej dziecko</span>. <span class="interactive" onclick="showTooltip(event, 'Najokrutniejszy, najboleśniejszy moment wiersza. Dojście do granicy świadomości i wytrzymałości. Potężna metafora, która animizuje czwarty wymiar. To nie jest czas, który się toczy, to czas, który staje się zwierzęciem. Nie jest mierzony w dniach i godzinach, ale w nagłym, surowym, niemal fizycznym bólu, który wyje w przyszłej przestrzeni')">I zawyje czas</span>.</p>
+        
+	<p class="line">Przed lustrem <span class="interactive" onclick="showTooltip(event, 'Kobieta wraca do tu i teraz, pzoozostając jednak w stanie rozpoznania nagiej egzystencji. Dwie łzy, to mało czy dużo? Biorąc pod uwagę styl poprzednich wersów, które pozwalają nam na wgląd w konfrontację bohaterki z losem, te łzy nie są objawem rozczulania się, raczej popłynęły same, jako skutek uboczny, co też pasowałoby do nieproszonej mowy ciała. I znów, to ślad zdradzający ją i zdradzający jej, choć zarazem powszechne, sekrety.')">nago stojąc, dwie łzy</span></p>
+        
+	<p class="line"><span class="interactive" onclick="showTooltip(event, 'Lekko wyciera łzy, ie dlatego, że gest jest lekki, wyciera je delikatnie, żeby nie było widać śladów, jak się domyślamy, i być może dlatego, że gest ten musi regularnie powtarzać. Jej łzy i wytarcie ich nie mają nic wspólnego ze słabością. Wgląd w jej stan świadomości sugerue, że nie ma wyboru, musi zmieścić się w tej egzystencji, jaka jej czy też większości ludzi przypada, skazana <em>na wielki trud, na martwy odpoczynek</em> dodatkowo ze względu na macierzyństwo. A jednocześnie ten wybór, jakiś wybór zawsze jest, tyle, że brak dobrego. To, co zależy jeszcze od niej, to zachowanie pozorów, usunięcie śladów wizji nieubłaganej teraźniejszości i przyszłości')">lekko wyciera</span> kobieta chusteczką</p>
+        
+	<p class="line">i farbą <span class="interactive" onclick="showTooltip(event, '<ul><li>• W analizie dokonanej przez przywoływanego tu wciąż poetę, czytamy: Wiersz przypomina nie tylko tryptyk, ale, z innego punktu widzenia, tunel – tunel, w którym ruch nabiera coraz większego pędu, w którym wzmaga się crescendo <em>świst</em> i <em>wycie</em> upływającego coraz szybciej czasu historycznego i czasu biologicznego, i który sam gwałtownie się zwęża, aż wreszcie jego wylot pokrywa się z okrągłą ramą lustra, gdzie widnieje już tylko twarz <em>przyciemniającej brew</em> samotnej bohaterki. </li><li>• Dodajmy, że to gest konsekwentny, prawda wymaga korekty, trzeba zasłonić uda, wymazać łzy, nadać twarzy oprawę w postaci brwi, założyć społeczną maskę, która nie tyle jest przemocą urywania przemocy, co podniesieniem głowy, ramą pozwalającą wkroczyć w dzień')">przyciemnia brew</span>.</p>
+
+	<p class="line">&nbsp;</p>
+	<p class="line">&nbsp;</p>
+	
+	<p class="line">Wilno, 1932</p>
+	<p class="line"></p>
+    
+	</div>
+    
+    <div id="tooltip" class="tooltip"></div>
+    <div id="menu">
+    <button onclick="showSection('poem')">Wiersz</button>
+    <button onclick="showSection('analysis')">Analiza</button>
+	<button onclick="showSection('context')">KONTEKSTY</button>
+    <button onclick="showSection('history')">ŁAMANIE SŁOWEM</button>
+    <button onclick="showSection('audio')">Pliki dźwiękowe</button>
+</div>
+
+    <script>
+        function showTooltip(event, text) {
+    event.stopPropagation(); 
+    const tooltip = document.getElementById('tooltip');
+    tooltip.innerHTML = text;
+    tooltip.style.display = 'block';
+
+    // Pozycjonowanie dymka
+    let tooltipWidth = tooltip.offsetWidth;
+    let posX = event.pageX - 20; // Wyrównanie do prawej
+    let posY = event.pageY - 40; // Przesunięcie w górę
+
+    tooltip.style.right = posX + 'px';
+    tooltip.style.top = posY + 'px';
+}
+
+
+        document.addEventListener('click', function(event) {
+            const tooltip = document.getElementById('tooltip');
+            if (!event.target.classList.contains('interactive')) {
+                tooltip.style.display = 'none';
+            }
+        });
+    function showSection(sectionId) {
+    // Ukryj wszystkie sekcje
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Pokaż tylko wybraną sekcję, jeśli istnieje
+    let section = document.getElementById(sectionId);
+    if (section) {
+        section.style.display = 'block';
+    } else {
+        console.error("Nie znaleziono sekcji o id:", sectionId);
+    }
+
+}
+</script>
+	<div id="poem" class="section">
+    <h2>Wiersz</h2>
+    <div class="poem">
+        <!-- Tu pozostaje Twój wiersz, nic nie zmieniamy -->
+    </div>
+</div>
+
+<div id="context" class="section">
+    <div class="context-box">
+        <h2>KONTEKSTY</h2>
+		T. S. ELIOT
+		<p X</p>
+        Każdy czytelnik &quot;Ziemi jałowej&quot; i &quot;Wydrążonych ludzi&quot;, słyszy zapewne echo dzieł T.S. Eliota w &quot;Świtach&quot;. Eliot był mistrzem wydobywania na światło dzienne okrucieństwa określonych pór roku i dnia. W &quot;Wydrążonych ludziach&quot; świty są czasem najbardziej dojmującej samotności, nagiej egzystencji, chwilą, która staje się prefiguracją śmierci:
+<p X</p>		
+<em>Czy budzimy się zupełnie sami
+<p X</p>  
+W godzinę kiedy wszystko w nas
+<p X</p> 
+Jest czułością i czystymi łzami
+<p X</p>
+Usta chcą pocałunku
+<p X</p>
+A modlą się do złamanego kamienia.</em>
+<p X</p> 
+Bezpośrednie echo powyższych słów słychać zresztą w wersie &quot;Hymnu&quot;: <em>miłość jest piaskiem połykanym wyschłymi ustami</em>. 
+Obecna w obu utworach Eliota kraina nieżywa, kraina kaktusowa, ziemia jałowa, to przestrzeń najsilniej doświadczana o świcie, który w &quot;Trzech zimach&quot; jest właściwie porą konfrontacji z wydziedziczeniem, może nawet porą wydziedziczenia. Słynny wers &quot;Wydrążonych ludzi&quot;<em>Więc okrążajmy kaktus nasz / O piątej godzinie rano</em> to czas przedświtowy. W &quot;Ziemi jałowej&quot; pojawiają się też: <em>Nierzeczywiste Miasto, Pod mgłą brunatną zimowego świtu; Tramwaje oraz drzewa w kurzu; dźwięki wysoko w powietrzu; bezkresne równiny; ziemia otoczona jedynie horyzontem;  Wiatr pod drzwiami</em>. A także frazy: <em>Co to za hałas znowu? Co ten wiatr wyrabia; Ona odwraca się i chwilę patrzy w lustro; Głębinowy prąd obgryzał jego kości szepcąc; ty który obracasz kołem i spoglądasz w wiatr</em> (chociaż czas w &quot;The Waste Land&quot; jest oczyszczającym i śmiercionośnym głębinowym prądem, koło sterowne i wiatr kierują losem). Czy zatem można powiedzieć, że utwory te mają podobną wymowę? Otóż nie sądzę. Wiersz Miłosza na tle dwóch cytowanych utworów Eliota tchnie optymizmem. Szczerze mówiąc ten rodzaj pokrewieństwa znaleźć można tylko, jeśli zawiesimy na chwilę sensy i interpretacje. Co zatem znaczy tu echo? Odpowiedź będzie dość ascetyczna: Miłosz na początku lat 30 musiał już dobrze znać wiersze Eliota, (tłumaczył go kilkanaście lat później, podczas wojny, kiedy rzeczywistość stała się ciemniejsza niż egzystencja ludzka w wierszach irlandzkiego poety) i myślę, że nawet nie tyle chodzi o inspirację, ile o to, że wiersze te swoim klimatem, poetyką, swoimi pejzażami, rytmem, wsiąkły we wrażliwość poetycką i wyobraźnię twórczą Miłosza, stając się częścią doświadczenia i materii organicznej, z której powstawała jego przedwojenna poezja. 
+<p X</p>
+Klimat wyobcowania, okrucieństwa czasu, elementy wizyjne, wydziedziczenie metafizyczne, oprócz tego zapożyczone frazy jak <em>pokażę ci strach w garstce popiołu</em> i Miłoszowe <em>Chociażby marna była, zebranego garstka popiołu</em>. 
+Jeśli jednak jest tu coś więcej, to myślę, że bez względu na to czy zabieg ten był świadomy czy nie, Miłosz napisał nam takie <em>świty</em>, których forma służy nie tylko nazwaniu okrucieństwa, ale i przekroczeniu go, choćby na poziomie paru doskonałych wersów. Przywołanie Eliota, jako tła dla &quot;Świtów&quot; pozwala zauważyć ten, może nie masywny, ale bezwzględnie obecny żywy bunt, szczeliny nadziei, może nie na zbawienie, ale na przebicie się formą do innej, przychylniejszej ontologii. Z tej perspektywy można spojrzeć też na odpowiedzialności twórcy, o której pisze m.in. w &quot;Ziemi Ulro&quot; Stąd m.in. balansowanie między klasyczną frazą i katastroficzną materią, powracające piękno harmonijnego metrum. 
+Na motywach, działających w tle semantycznej warstwy wierszy Miłosza, podobieństwa się nie kończą. &quot;Trzy zimy&quot;, podobnie jak to dzieje się w wierszach Eliota, pełne są i elementów wizyjnych i powtarzających się motywów. Z tych, które znamy ze &quot;Świtów&quot;, w cyklu wracają, i to nie raz: <em>świt, wiosna, dziecko, lodowe krajobrazy, &quot;ona&quot; w dialogu, lub liryce maski, księżyc-świadek, burzę/grom, szelest krwi, klony, twardy/martwy sen, siwy kolor, pianie koguta, ślepa młodość, wiatr</em>, i wreszcie <em>stukot serca</em>, nota bene w wierszu &quot;Dialog&quot; skojarzony, choć w ironicznie sformułowanym zarzucie, z poezją, z muzyką: 
+<p X</p>
+<em>(…) mój lekkomyślny, chciwy wielbicielu
+<p X</p>
+krwi i księżyca,
+<p X</p>
+Tylko suchego w skroniach szelestu
+<p X</p>
+krwi mojej słucham.
+<p X</p>
+<p X</p>
+Muza, muzyka. A sztuka wiersza
+<p X</p>
+wiernie mi służy.
+<p X</p>
+i lekko biegnie za stukiem serca
+<p X</p>
+jak deszcz po burzy.</em>
+<p X</p>
+Ironiczny zarzut, nie znaczy, że Miłosz muzyki w wierszu się wyrzeka. Te fragmenty &quot;Dialogu&quot; zbliżają się raczej do ironii romantycznej, która bierze się z konstatacji rozziewu między muzycznym rytmem, pochwałą wiosny i Erosa, a nieustającym rozpadem i bólem,  wobec którego <em>sztuka zaklęcia,muzyka krucha</em> okazuje się bezsilna. 
+Więcej o odpowiedzialności za przetrwanie obrazu świata, w którym może przechować się udręczona świadomość piszemy w dziale ANALIZA. 
+    </div>
+</div>
+
+<div id="analysis" class="section">
+    <div class="analysis-box">
+        <h2>Analiza</h2>
+        XXX
+    </div>
+</div>
+
+<div id="history" class="section">
+    <div class="history-box">
+        <h2>ŁAMANIE SŁOWEM</h2>
+         Jak mówił Miłosz: „to samo powiedziane inaczej, nie jest to samo”. Żeby osoby nie mające zbyt często do czynienia z poezją, mogły docenić formalną świetność wiersza, przedstawiamy poniżej Świty po przepuszczeniu ich przez maszynkę, która miksuje formę na papkę:
+ <p class="line">&nbsp;</p> 
+<em>Dom był wysoki, było ciemno, mur wspinał się powyżej ruszających się liści klonowych, i powyżej nóg ludzi, którzy się śpieszyli. Światła domu oświetlały plac, słychać było windę jadącą przez piętra o tych godzinach poprzedzających świt, które są puste. Słychać było ruch kabli i koguta, który piał, a rynny i inne rury dodawały do tego dźwięku echo, aż drżały ściany i ludzie słyszeli ten dźwięk, który wydawał się im i okropny i bardzo urodziwy. Słychać zgrzytający dźwięk toru, wstaje nowy dzień znowu i brak słońca, i dym z kominów, jesteśmy zamknięci w mieszkaniach na piętrze w, a powyżej tego piętra latają ptaki i słychać ruch powietrza od ruchu skrzydeł. Jedno życie to  mało, chcę żyć dwa razy na smutnym świecie, i chcę zbadać prawa jakim podlega czas, który przypomina mi wiatr. W podwórzu stoją uliczni muzycy, którzy śpiewają chórem, a w oknach widać ręce ludzi od których odbija się światło. Ludzie słuchają śpiewu. Jakaś kobieta wstaje z łóżka wymiętego przez sen, w nocy we snach myślała o wyjechaniu z miasta i o ładnych ubraniach, staje nieubrana przed lustrem, które jest stare i poczerniałe, stwierdza, że musi zasłonić uda, bo ma na nich pajączki, a to jej  czymś przypomina. Słyszy śmiech dziecka i myśli, że jej dziecko też czeka marna egzystencja, że aż czasowi zrobi się przykro, ale na razie wyciera oczy chustką i poprawia sobie brwi przed lustrem</em>. 
+<p class="line">&nbsp;</p> 
+Ale i tak, nawet w takiej papce, można znaleźć coś ciekawego, jak chociażby drobiazgową obserwację, przywołanie odległych nieoczywistych elementów, poruszanie się między ogółem a szczegółem, między konkretem a abstrakcją. 
+<p class="line">&nbsp;</p> 
+Wyobraźmy sobie więc różnicę na bazowym poziomie, między językiem Miłosza a tym jak opisałaby doświadczenie poranka osoba, której brak jakiegokolwiek literackiego, filozoficznego, nie tylko poetyckiego zaplecza. Np.:
+<p class="line">&nbsp;</p> 
+<em>Bardzo wcześnie rano jest jakoś dennie, dźwięki zewsząd, w bloku wszystko słychać, a do tego jakiś rąbnięty kogut. I znowu beznadziejna pogoda. Masakra</em>. 
+<p class="line">&nbsp;</p> 
+Potoczny język, nie chroniąc nas mocą formy przed doswiadczeniem podobnym do przedświtowych godzin Miłosza, wymusza innego rodzaju dystans, odcięcie się od przeżycia, strywializowanie go, bez zrozumienia, co się właściwie w nas wydarzyło. 
+<p class="line">&nbsp;</p> 
+<p class="line">&nbsp;</p> 
+Zobaczmy teraz co stałoby się gdybyśmy popsuli wiersz inaczej, zmienimy formę czasowników na czas przeszły, ale dokonany tym razem, zmienimy szyk i słownictwo, pozbędziemy się metafor, zostawimy tylko tak zwane główne informacje:
+<p class="line">&nbsp;</p> 
+Dom był wysoki. Mur wspiął się w ciemności
+<p class="line">
+Powyżej klonów i śpieszącej się ludzkości
+<p class="line">
+Wschodzące słońce odbiło się od jego ściany
+<p class="line">
+Winda wjechała na piętro, kable zastukały
+<p class="line">
+Kogut zapiał i rynny odbiły echo pienia
+<p class="line">
+budzący się, usłyszeli go i się wzdrygnęli
+<p class="line">
+bo to było okropne i wspaniałe jak ziemia
+<p class="line">&nbsp;</p> 
+Niech nam Miłosz wybaczy... 
+
+
+
+	</div> 
+</div>
+
+<div id="audio" class="section">
+    <div class="audio-box">
+        <h2>Pliki dźwiękowe</h2>
+        <p>w tym dziale znajdziesz nagrania wiersza, odtwarzanego na różne sposoby. Czyli wiersz odtworzony na bębnie, jako czysty rytm oparty na rozkładzie akcentów. Wiersz czytany tylko, jako rytm nadal, z bębnem, dowodzący, że ngranie rytmu na bębnie nie jest dowolną twórczością. Ponieważ &quot;Świty&quot; są wierszem, który ożywa w pełni czytany, bądź mówiony na głos, a jednocześnie nie jest to wiersz inkantacyjny, któremu służyłoby tak rytmiczne odczytanie, pliki z bębnem, ew. mową i bębnem mają służyć wyłącznie uświadomieniu jak Miłosz konstruuje regularność, po to by ją regularnie burzyć. Choć szczerze mówiąc mamy podejrzenie, że tego rodzaju teksty działają na nas swoim rytmem niejako podprogowo, nawet czytane na głos w głowie, bez żadnego rytmicznego wybijania akcentów. Znajdziesz tu także rozmaite odczytania wiersza przez różne osoby, w tym aktorów, łącznie z odczytaniem, w którym akcentuję nieprawidłowo, bo przy przemieszczeniu akcentów staje się jasne, że choć nie słyszymy ich przy normalnym odczytaniu na głos, one tam jak najbardziej są. </p>
+    </div>
+
+    <div class="audio-section">
+        <h3>Rytm I strofy na bębnie</h3>
+        <audio controls>
+            <source src="Aaa swity 1 strofa wolny mp3.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">Dzięki nagraniom rytmu, możesz poczuć &quot;arytmię&quot; wiersza ujawniającą się przez akcenty. Rytm jest nieco szybszy od tekstu czytanego na głos, ale w ten sposób łatwiej zauważyć strukturę. </p>
+    </div>
+
+    <div class="audio-section">
+        <h3>Rytm II strofy na bębnie</h3>
+        <audio controls>
+            <source src="II STROFA BEBEN besser 1mp3.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">Nagranie II strofy, korzyści, jak wyżej</p>
+    </div>
+
+     <div class="audio-section">
+        <h3>3. Rytm III strofy na bębenku</h3>
+        <audio controls>
+            <source src="III strofa beben besser mp3.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">jak wyżej, tylko trzecia część wiersza, w której stukot serca przeplata się z zaburzeniami rytmu, raz przebija się jedno, raz drugie</p>
+    </div>
+	 <div class="audio-section">
+        <h3>4. Rytm Świtów na bębnie całość szybko</h3>
+        <audio controls>
+            <source src="świty bęben CALOSC szybkie mp.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">całość przyśpieszona, żeby wyłapać strukturę rytmiczną całości, w tym ewentualne różnice między częściami, ale i powtórzenia rytmów</p>
+    </div>
+	<div class="audio-section">
+        <h3>5. Rytm Świtów na bębnie całość wolniejszy</h3>
+        <audio controls>
+            <source src="świty III strofa bebenmp3.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">całość rytmiczna, w wolniejszym tempie, żeby móc np. czytać sobie w myślach do rytmu i zobaczyć strukturę rytmiczną nałożoną na tekst</p>
+    </div>
+	<div class="audio-section">
+        <h3>6. Świty szeptane</h3>
+        <audio controls>
+            <source src="świty szept calosc.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">wersja szeptana, żeby nie pobudzić jeszcze śpiącychi żeby dobrze wychwycić iloc szelestów</p>
+    </div>
+	<div class="audio-section">
+        <h3>7. Świty zwyczajnie czytane</h3>
+        <audio controls>
+            <source src="świty czytane mp.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">najzwyklejsze odczytanie wiersza na głos, bez gry, bez deklamacji, z zachowaniem podziałów na wersy, jest szansa, że ktoś usłyszy dzięki temu przerzutnie</p>
+    </div>
+	<div class="audio-section">
+        <h3>8. łamanie rytmu</h3>
+        <audio controls>
+            <source src="łamanie rytmu mp.mp3" type="audio/mpeg">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+        <p class="audio-description">pierwsze wersy wiersza przeczytane z nieprawidłowym akcentowaniem, na dowód, że w &quot;normalnym&quot; odczytaniu akcenty są ważne, tylko nie słyszymy ich, bo przyzwyczajenie nie pozwala</p>
+    </div>
+</div>
+</body>
+</html>
+
+
